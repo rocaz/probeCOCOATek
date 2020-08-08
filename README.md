@@ -21,6 +21,7 @@ TEK:            TEK Zip URL. if not set, print TEK distrubuted list.
 ## Exsamples
 
 1. TEK Distributed List
+
 ```$ python probeCOCOATek/probeCOCOATek.py```
 
 ```
@@ -38,6 +39,7 @@ Total:       149
 ```
 
 2. TEK Zip Detail
+
 ```$ python probeCOCOATek/probeCOCOATek.py https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip```
 
 ```
