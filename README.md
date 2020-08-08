@@ -67,3 +67,9 @@ keys:  (Total:      [17])
 ## License
 
 MIT
+
+## See Also
+
+https://developers.google.com/android/exposure-notifications/exposure-notifications-api
+
+https://developer.apple.com/documentation/exposurenotification
