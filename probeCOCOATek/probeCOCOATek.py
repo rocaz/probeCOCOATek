@@ -12,7 +12,6 @@ import json
 import requests
 import zipfile
 import pandas as pd
-from google.protobuf.json_format import MessageToJson
 
 from TemporaryExposureKey.TemporaryExposureKey_pb2 import TemporaryExposureKeyExport
 
