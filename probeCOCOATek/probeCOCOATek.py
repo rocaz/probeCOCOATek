@@ -18,7 +18,7 @@ from TemporaryExposureKey.TemporaryExposureKey_pb2 import TemporaryExposureKeyEx
 
 import probeCOCOATek
 
-__version__ = '2.20200809'
+__version__ = '3.20200809'
 
 _interval_sec_in_japan = 1
 
