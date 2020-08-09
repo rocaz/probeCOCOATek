@@ -111,7 +111,7 @@ Exsamples
    ZIP Count:         149
    Keys Count:       1785
 
-CAUSION
+CAUTION
 -------
 
 **In Japan, the interval to access the server MUST BE AT LEAST 1 SEC to
