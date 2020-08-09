@@ -123,7 +123,7 @@ def print_tek_zip_list(tek_zip_list, ekc) -> list:
 def print_tek_keys_list(tek_zip_list) -> list:
     text_lines = []
 
-    text_lines.append("{0:9}  {1:28} {2:64}".format("#", "Created", "TEK Data"))
+    text_lines.append("{0:11}  {1:28} {2:32}".format("#", "Created", "TEK Data"))
     key_cnt = 0
     for item in tek_zip_list:
         key_bin, _ = extract_key_zip(item["url"])
@@ -164,7 +164,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".', prefix_chars='-/')
     parser.add_argument("-z", "--zip-url", default=None, dest="zip_url", help="print TEK ZIP Detail. If not set, print TEK distribution list")
     parser.add_argument("-ekc", "--each-keys-count", action='store_true', dest="ekc", help="Print keys count each ZIP with TEK distribution list. Only available when TEK distribution list.")
-    parser.add_argument("-akl", "--all-keys-list", action='store_true', dest="akl", help="Print a list of keys for each ZIP. Other options are ignored.")
+    parser.add_argument("-akl", "--all-keys-list", action='store_true', dest="akl", help="Print a list of all keys for each ZIP. Other options are ignored.")
     parser.add_argument("-dl", "--dl-zip", action='store_true', dest="dl", help="Download all TEK ZIP and list JSON from TEK distribution list into folder named with datetime. Other options are ignored.")
     parser.add_argument("-v", "--version", action="version", version=__version__)
     args = parser.parse_args(sys.argv[1:])
