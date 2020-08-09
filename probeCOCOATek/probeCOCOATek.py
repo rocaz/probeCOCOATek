@@ -181,22 +181,28 @@ def main() -> None:
             tb = sys.exc_info()[2]
             print(e.with_traceback(tb))
             return 1
-    elif args.zip_url is None or (args.zip_url is not None and args.ekc) or (args.zip_url is not None and args.akl):
+    elif args.akl:
         try:
             df = normalize_dataframe(json.loads(get_url_content(_tek_distribution_url).decode('utf-8')))
             tek_zip_list = df.to_dict(orient="records")
-            if args.akl:
-                text_lines = print_tek_keys_list(tek_zip_list)
-                print(os.linesep.join(text_lines))
-            else:
-                text_lines = print_tek_zip_list(tek_zip_list, args.ekc)
-                print(os.linesep.join(text_lines))
+            text_lines = print_tek_keys_list(tek_zip_list)
+            print(os.linesep.join(text_lines))
+        except Exception as e:
+            print("Error happens, when getting all keys of ZIP.")
+            tb = sys.exc_info()[2]
+            print(e.with_traceback(tb))
+            return 1
+    elif args.zip_url is None:
+        try:
+            df = normalize_dataframe(json.loads(get_url_content(_tek_distribution_url).decode('utf-8')))
+            tek_zip_list = df.to_dict(orient="records")
+            text_lines = print_tek_zip_list(tek_zip_list, args.ekc)
+            print(os.linesep.join(text_lines))
         except Exception as e:
             print("Error happens, when getting TEK distribution list.")
             tb = sys.exc_info()[2]
             print(e.with_traceback(tb))
             return 1
-
     elif _isURL(args.zip_url):
         try:
             zip_content = get_url_content(args.zip_url)
@@ -211,7 +217,7 @@ def main() -> None:
             print(e.with_traceback(tb))
             return 1
     else:
-        print("Argument should be valid URL for TEK.")
+        print("Argument other error happens.")
         return 1
 
     return 0
