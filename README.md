@@ -10,15 +10,15 @@ Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan 
 
 ## Usage
 
-probeCOCOATek.py [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl] [-v]
+probeCOCOATek.py [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
 
 -z ZIP_URL, --zip-url ZIP_URL:  TEK Zip URL. if not set, print TEK distrubuted list.
 
--ekc, --each-keys-count:        Print keys count each zip with TEK distribution list. Only available when TEK distribution list.
+-ekc, --each-keys-count:        Print keys count each zip with TEK distribution list. Only available when printing TEK distribution list.
 
 -akl, --all-keys-list:          Print a list of all keys for each ZIP, instead of TEK distribution list. Other options are ignored.
 
--dl, --dl-zip:                  Download all TEK ZIP and list JSON from TEK distribution list into folder named with datetime. Other options are ignored.
+-dl, --dl-zip:                  Specified directory for downloading all TEK ZIP and list JSON from TEK distribution list. Other options are ignored.
 
 -h, --help:                     show this help message and exit
 
@@ -100,6 +100,14 @@ Keys:  (Count: [17])
  149:1785    [2020-08-09 00:00:06+0900]   [251ba0a4da50d516161d64ca0100c495]
 ZIP Count:         149
 Keys Count:       1785
+```
+
+4. Download all TEK ZIP
+
+```$ python probeCOCOATek/probeCOCOATek.py -dl tek_dir```
+
+```
+Download done.
 ```
 
 ## CAUTION
