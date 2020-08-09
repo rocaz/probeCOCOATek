@@ -10,13 +10,17 @@ Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan 
 
 ## Usage
 
-probeCOCOATek.py [-h] [-v] [TEK]
+probeCOCOATek.py [-h] [-z ZIP_URL] [-ekc] [-akl] [-v]
 
-TEK:            TEK Zip URL. if not set, print TEK distrubuted list.
+-z ZIP_URL, --zip-url ZIP_URL:  TEK Zip URL. if not set, print TEK distrubuted list.
 
--h, --help:     show this help message and exit
+-ekc, --each-keys-count:        Print keys count each zip with TEK distributed list. Only available when TEK distributed list.
 
--v, --version:  show program's version number and exit
+-akl, --all-keys-list:          Print a list of keys for each ZIP, instead of TEK distribution list. -z|--zip-url is ignored.
+
+-h, --help:                     show this help message and exit
+
+-v, --version:                  show program's version number and exit
 
 ## Exsamples
 
@@ -67,6 +71,8 @@ keys:  (Total:      [17])
 ## License
 
 MIT
+
+Copyright (c) 2020 rocaz.net
 
 ## See Also
 
