@@ -14,11 +14,13 @@ import requests
 import zipfile
 import pandas as pd
 
-from TemporaryExposureKey.TemporaryExposureKey_pb2 import TemporaryExposureKeyExport
+sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'TemporaryExposureKey'))
+from TemporaryExposureKey_pb2 import TemporaryExposureKeyExport
 
-import probeCOCOATek
 
-__version__ = '4.20200810'
+__version__ = '5.20200811'
+
 
 _interval_sec_in_japan = 1
 
@@ -141,7 +143,7 @@ def print_tek_keys_list(tek_zip_list:dict) -> list:
     return text_lines
 
 
-def print_tek_bin_detail(tek_bin:TemporaryExposureKeyExport) -> str:
+def print_tek_bin_detail(tek_bin) -> str:
     text_lines = []
 
     text_lines.append("start_timestamp: [{:%Y-%m-%d %H:%M:%S%z}]".format(datetime.fromtimestamp(tek_bin.start_timestamp).astimezone()))
@@ -164,7 +166,7 @@ def print_tek_bin_detail(tek_bin:TemporaryExposureKeyExport) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".', prefix_chars='-/')
+    parser = argparse.ArgumentParser(description='Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".', prefix_chars='-')
     parser.add_argument("-z", "--zip-url", default=None, dest="zip_url", help="print TEK ZIP Detail. If not set, print TEK distribution list")
     parser.add_argument("-ekc", "--each-keys-count", action='store_true', dest="ekc", help="Print keys count each ZIP with TEK distribution list. Only available when printing TEK distribution list.")
     parser.add_argument("-akl", "--all-keys-list", action='store_true', dest="akl", help="Print a list of all keys for each ZIP. Other options are ignored.")
@@ -221,7 +223,3 @@ def main() -> None:
         return 1
 
     return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())
