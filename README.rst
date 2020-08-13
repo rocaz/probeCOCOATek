@@ -4,17 +4,24 @@ probeCOCOATek
 Probe TemporaryExposureKeys and Files of Exposure Notifications System
 in Japan a.k.a. “COCOA”.
 
-|Python: 3.7+| |License: MIT|
+|Python: 3.7+| |PyPI| |License: MIT|
 
 Requirement
 -----------
 
 -  Python 3.7+
 
+Install
+-------
+
+::
+
+   pip install probeCOCOATek
+
 Usage
 -----
 
-probeCOCOATek.py [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
+probeCOCOATek [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
 
 -z ZIP_URL, –zip-url ZIP_URL: TEK Zip URL. if not set, print TEK
 distrubuted list.
@@ -37,7 +44,7 @@ Exsamples
 
 1. TEK Distribution List
 
-``$ python probeCOCOATek/probeCOCOATek.py``
+``$ probeCOCOATek``
 
 ::
 
@@ -55,7 +62,7 @@ Exsamples
 
 2. TEK Zip Detail
 
-``$ python probeCOCOATek/probeCOCOATek.py -z https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip``
+``$ probeCOCOATek -z https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip``
 
 ::
 
@@ -81,7 +88,7 @@ Exsamples
 
 3. TEK Keys List
 
-``$ python probeCOCOATek/probeCOCOATek.py -akl``
+``$ probeCOCOATek -akl``
 
 ::
 
@@ -113,7 +120,7 @@ Exsamples
 
 4. Download all TEK ZIP
 
-``$ python probeCOCOATek/probeCOCOATek.py -dl tek_dir``
+``$ probeCOCOATek -dl tek_dir``
 
 ::
 
@@ -145,5 +152,6 @@ https://developer.apple.com/documentation/exposurenotification
 
 .. |Python: 3.7+| image:: https://img.shields.io/badge/Python-3.7+-4584b6.svg?style=popout&logo=python
    :target: https://www.python.org/
+.. |PyPI| image:: https://img.shields.io/pypi/v/probeCOCOATek
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
    :target: https://opensource.org/licenses/MIT
