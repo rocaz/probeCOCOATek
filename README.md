@@ -1,16 +1,22 @@
 # probeCOCOATek
 Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".
 
-[![Python: 3.7+](https://img.shields.io/badge/Python-3.7+-4584b6.svg?style=popout&logo=python)](https://www.python.org/)
+[![Python: 3.7+](https://img.shields.io/badge/Python-3.7+-4584b6.svg?style=popout&logo=python)](https://www.python.org/) ![PyPI](https://img.shields.io/pypi/v/probeCOCOATek)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Requirement
 
 - Python 3.7+
 
+## Install
+
+```
+pip install probeCOCOATek
+```
+
 ## Usage
 
-probeCOCOATek.py [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
+probeCOCOATek [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
 
 -z ZIP_URL, --zip-url ZIP_URL:  TEK Zip URL. if not set, print TEK distrubuted list.
 
@@ -28,7 +34,7 @@ probeCOCOATek.py [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
 
 1. TEK Distribution List
 
-```$ python probeCOCOATek/probeCOCOATek.py```
+```$ probeCOCOATek```
 
 ```
 #     Created                      TEK URL
@@ -46,7 +52,7 @@ ZIP Count:         149
 
 2. TEK Zip Detail
 
-```$ python probeCOCOATek/probeCOCOATek.py -z https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip```
+```$ probeCOCOATek -z https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip```
 
 ```
 start_timestamp: [2020-07-27 09:00:00+0900]
@@ -72,7 +78,7 @@ Keys:  (Count: [17])
 
 3. TEK Keys List
 
-```$ python probeCOCOATek/probeCOCOATek.py -akl```
+```$ probeCOCOATek -akl```
 
 ```
 #            Created                      TEK Data
@@ -104,7 +110,7 @@ Keys Count:       1785
 
 4. Download all TEK ZIP
 
-```$ python probeCOCOATek/probeCOCOATek.py -dl tek_dir```
+```$ probeCOCOATek -dl tek_dir```
 
 ```
 Download done.
