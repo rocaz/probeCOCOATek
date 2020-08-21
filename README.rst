@@ -4,7 +4,11 @@ probeCOCOATek
 Probe TemporaryExposureKeys and Files of Exposure Notifications System
 in Japan a.k.a. “COCOA”.
 
-|Python: 3.7+| |PyPI| |License: MIT|
+|Python: 3.7+| |PyPI|
+
+|License: MIT|
+
+|GitHub Actions| |codecov|
 
 CAUTION
 -------
@@ -31,7 +35,7 @@ Install
 Usage
 -----
 
-probeCOCOATek [-h] [-wk] [-nc] [-f {text,json}] [-v]
+probeCOCOATek [-h] [-nk] [-nc] [-f {text,json}] [-v]
 COMMAND{list,zip,dl} [PARAM]
 
 COMMAND{list,zip,dl}:
@@ -42,9 +46,8 @@ list JSON from TEK distribution list to the specified directory.
 
 PARAM:
 
-Parameter per Command. With ‘list’, It means aggregate unit, Either the
-date(‘date’) or the date and key(‘key’). With ‘zip’, specified ZIP url.
-With ‘dl’, Specified directory for downloading.
+Parameter per Command. With ‘zip’, specified ZIP url or filename. With
+‘dl’, Specified directory for downloading.
 
 -nk, –no-keys: Without key information when printing ZIP and TEK list
 with TEK distribution list. Available with ‘list’ command.
@@ -95,7 +98,7 @@ Exsamples
 
 2. TEK Distribution List without keys
 
-``$ probeCOCOATek list -wk``
+``$ probeCOCOATek list -nk``
 
 ::
 
@@ -120,6 +123,10 @@ Exsamples
 3. TEK Zip Detail
 
 ``$ probeCOCOATek zip https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip``
+
+or
+
+``$ probeCOCOATek zip /foo/bar/638.zip``
 
 ::
 
@@ -170,3 +177,6 @@ https://developer.apple.com/documentation/exposurenotification
 .. |PyPI| image:: https://img.shields.io/pypi/v/probeCOCOATek
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
    :target: https://opensource.org/licenses/MIT
+.. |GitHub Actions| image:: https://github.com/rocaz/probeCOCOATek/workflows/GitHub%20Actions/badge.svg
+.. |codecov| image:: https://codecov.io/gh/rocaz/probeCOCOATek/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/rocaz/probeCOCOATek

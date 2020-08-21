@@ -20,6 +20,7 @@ Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan 
 ## Install
 
 ```
+pip install pandas
 pip install probeCOCOATek
 ```
 
@@ -33,7 +34,7 @@ COMMAND{list,zip,dl}:
 
 PARAM:
 
-   Parameter per Command. With 'zip', specified ZIP url. With 'dl', Specified directory for downloading.
+   Parameter per Command. With 'zip', specified ZIP url or filename. With 'dl', Specified directory for downloading.
 
 -nk, --no-keys:                        Without key information when printing ZIP and TEK list with TEK distribution list. Available with 'list' command.
 
@@ -81,7 +82,7 @@ Keys Total Count:       1985
 
 2. TEK Distribution List without keys
 
-```$ probeCOCOATek list -wk```
+```$ probeCOCOATek list -nk```
 
 ```
 #     Created                      ZIP URL                                                            KeyCount
@@ -106,6 +107,10 @@ ZIP Count:               118
 3. TEK Zip Detail
 
 ```$ probeCOCOATek zip https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip```
+
+or
+
+```$ probeCOCOATek zip /foo/bar/638.zip```
 
 ```
 start_timestamp: [2020-07-27 09:00:00+0900]
