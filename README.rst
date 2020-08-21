@@ -6,6 +6,16 @@ in Japan a.k.a. “COCOA”.
 
 |Python: 3.7+| |PyPI| |License: MIT|
 
+CAUTION
+-------
+
+**In Japan, the interval to access the server MUST BE AT LEAST 1 SEC to
+avoid being arrested by the Okazaki Police Department or the Kanagawa
+Prefectural Police, Therefore, some options are very slow.**
+
+`Librahack Incident
+(Japanese) <https://ja.wikipedia.org/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6,>`__
+
 Requirement
 -----------
 
@@ -21,19 +31,28 @@ Install
 Usage
 -----
 
-probeCOCOATek [-h] [-z ZIP_URL] [-ekc] [-akl] [-dl DL_DIR] [-v]
+probeCOCOATek [-h] [-wk] [-nc] [-f {text,json}] [-v]
+COMMAND{list,zip,dl} [PARAM]
 
--z ZIP_URL, –zip-url ZIP_URL: TEK Zip URL. if not set, print TEK
-distrubuted list.
+COMMAND{list,zip,dl}:
 
--ekc, –each-keys-count: Print keys count each zip with TEK distribution
-list. Only available when printing TEK distribution list.
+Command. ‘list’: Getting ZIP and TEK list with TEK distribution list.
+‘zip’: Taking the ZIP’s TEK details. ‘dl’: Downloading all TEK ZIP and
+list JSON from TEK distribution list to the specified directory.
 
--akl, –all-keys-list: Print a list of all keys for each ZIP, instead of
-TEK distribution list. Other options are ignored.
+PARAM:
 
--dl, –dl-zip: Specified directory for downloading all TEK ZIP and list
-JSON from TEK distribution list. Other options are ignored.
+Parameter per Command. With ‘list’, It means aggregate unit, Either the
+date(‘date’) or the date and key(‘key’). With ‘zip’, specified ZIP url.
+With ‘dl’, Specified directory for downloading.
+
+-nk, –no-keys: Without key information when printing ZIP and TEK list
+with TEK distribution list. Available with ‘list’ command.
+
+-nc, –no-cache: \*\* Not work yet \*\* Do not use cache.
+
+-f {text,json}, –format {text,json}: Output format type, default is
+‘text’.
 
 -h, –help: show this help message and exit
 
@@ -44,25 +63,63 @@ Exsamples
 
 1. TEK Distribution List
 
-``$ probeCOCOATek``
+``$ probeCOCOATek list``
 
 ::
 
-   #     Created                      TEK URL
-      0  [2020-07-25 11:00:09+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/366.zip]
-      1  [2020-07-25 16:00:18+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/389.zip]
-      2  [2020-07-25 17:00:15+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/402.zip]
-      3  [2020-07-25 18:00:11+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/415.zip]
-      4  [2020-07-25 21:00:08+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/416.zip]
+   #     Created                      ZIP URL / Key Data                                                 KeyCount
+      1  [2020-08-03 16:23:04+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/609.zip]     [  10]
+       1                              [caab200e81f6f0e208d385771c7a844c]
+       2                              [270b8c5c3f9ec1c28cb2bb94468d78ab]
+       3                              [db0aca0fe8afdd86eb46c03ba9a2579d]
+       4                              [d4a1664a7335e28e997864702e4f2537]
+       5                              [c3f85d781f070df6781a90eaf726637a]
+       6                              [1c1a00dae53dbe92c54ff03f1086ea5e]
+       7                              [33ea25d015aae4f683875a0ea5998f35]
+       8                              [0b8fc787cc4adda36a3bb539e7486980]
+       9                              [5c34250f7f2986b43e94d09ae295e44a]
+      10                              [76fed3b413d6f4c3bf14e1d092598727]
+      2  [2020-08-04 00:00:22+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/630.zip]     [   5]
+       1                              [26d1dd4b972bdbdcdcdaa6706b3f3bee]
+       2                              [50bf85a6b53d41b830b718c3298f301b]
+       3                              [3b50fd16f9bf68c319a758c473ea9842]
+       4                              [4d445838c792716b7e40b1dc8d23b386]
+       5                              [6a9b318bbc0efafbed7e4938f2d6d2ce]
+       :
+      29                              [ff53ed3d71a2c24ccfc8f323e1c023d0]
+      30                              [81122959f8738766fcf89da1f5ec5242]
+      31                              [95a063d51ab208934b687d91a3179bc5]
+      32                              [fcdd23cbe642b5ea9a3555ca94d6ba45]
+   ZIP Count:               118
+   Keys Total Count:       1985
+
+2. TEK Distribution List without keys
+
+``$ probeCOCOATek list -wk``
+
+::
+
+   #     Created                      ZIP URL                                                            KeyCount
+      1  [2020-08-03 16:23:04+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/609.zip]     [  10]
+      2  [2020-08-04 00:00:22+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/630.zip]     [   5]
+      3  [2020-08-05 00:00:09+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/631.zip]     [  20]
+      4  [2020-08-05 00:00:11+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/632.zip]     [  19]
+      5  [2020-08-06 00:00:26+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/651.zip]     [  27]
+      6  [2020-08-06 00:00:27+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/652.zip]     [  28]
+      7  [2020-08-06 00:00:27+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/653.zip]     [  29]
+      8  [2020-08-07 00:00:07+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/657.zip]     [  16]
+      9  [2020-08-07 00:00:09+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/658.zip]     [  17]
+     10  [2020-08-07 00:00:15+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/665.zip]     [  17]
       :
-    146  [2020-08-09 00:00:06+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/693.zip]
-    147  [2020-08-09 00:00:06+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/694.zip]
-    148  [2020-08-09 00:00:06+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/695.zip]
-   ZIP Count:         149
+    115  [2020-08-18 00:00:24+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/809.zip]     [  28]
+    116  [2020-08-18 00:00:25+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/810.zip]     [  30]
+    117  [2020-08-18 00:00:25+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/811.zip]     [  30]
+    118  [2020-08-18 00:00:25+0900]   [https://covid19radar-jpn-prod.azureedge.net/c19r/440/812.zip]     [  32]
+   ZIP Count:               118
 
-2. TEK Zip Detail
+3. TEK Zip Detail
 
-``$ probeCOCOATek -z https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip``
+``$ probeCOCOATek zip https://covid19radar-jpn-prod.azureedge.net/c19r/440/638.zip``
 
 ::
 
@@ -86,38 +143,6 @@ Exsamples
           [rolling_period                ]:[144]
        :
 
-3. TEK Keys List
-
-``$ probeCOCOATek -akl``
-
-::
-
-   #            Created                      TEK Data
-      1:1       [2020-07-25 11:00:09+0900]   [40ea03a8cb3ad80df3b330b6493c69da]
-      2:2       [2020-07-25 16:00:18+0900]   [8ea050eea9f05f46630a178f6fcd0f74]
-      3:3       [2020-07-25 17:00:15+0900]   [3bd0b1143dae2661b1272a189a6ad463]
-      4:4       [2020-07-25 18:00:11+0900]   [985e35726ff00045d8d107fd129d2528]
-      5:5       [2020-07-25 21:00:08+0900]   [3fad7513f520e9ba6c9a4c3692137c79]
-      6:6       [2020-07-25 22:00:10+0900]   [d59e8078beb674868c0d55cd4da6f134]
-      7:7       [2020-07-26 13:00:08+0900]   [52a6cc952a072fa958619312e9b86701]
-      8:8       [2020-07-26 13:00:08+0900]   [80ab4fd273709052fe1b1b1717b45fe2]
-      9:9       [2020-07-26 16:00:14+0900]   [2363bbf84bc65aae0acb7477aedfe0da]
-     10:10      [2020-07-26 16:00:17+0900]   [a44834b836c2302bf4031e36088f4f8a]
-     11:11      [2020-07-26 17:00:06+0900]   [14bb779490ee2d38bbc199f8a35b98e8]
-     11:12      [2020-07-26 17:00:06+0900]   [2d5bb13d05598f72af48cdd3c9db7223]
-     12:13      [2020-07-26 17:00:08+0900]   [522a23219d005dab77e0efca677c48c3]
-     12:14      [2020-07-26 17:00:08+0900]   [2e91f101edfaca20cd264182cabb2917]
-     13:15      [2020-07-27 12:00:23+0900]   [5e3ee001bc705e596c0eb1f97fe131fc]
-     14:16      [2020-07-27 12:00:24+0900]   [1714b924e7da1438172f03d264456c92]
-     15:17      [2020-07-27 12:00:24+0900]   [246bbb6325c48829d44f00dfb373a9e3]
-     16:18      [2020-07-27 14:00:12+0900]   [57103c17ce1fa8c74d52763cd75efe63]
-     :
-    149:1783    [2020-08-09 00:00:06+0900]   [e6fb3c70e5b931a53273061cab111851]
-    149:1784    [2020-08-09 00:00:06+0900]   [58164ebfbf9a62c73e032014b69991fd]
-    149:1785    [2020-08-09 00:00:06+0900]   [251ba0a4da50d516161d64ca0100c495]
-   ZIP Count:         149
-   Keys Count:       1785
-
 4. Download all TEK ZIP
 
 ``$ probeCOCOATek -dl tek_dir``
@@ -125,16 +150,6 @@ Exsamples
 ::
 
    Download done.
-
-CAUTION
--------
-
-**In Japan, the interval to access the server MUST BE AT LEAST 1 SEC to
-avoid being arrested by the Okazaki Police Department or the Kanagawa
-Prefectural Police, Therefore, some options are very slow.**
-
-`Librahack Incident
-(Japanese) <https://ja.wikipedia.org/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6,>`__
 
 License
 -------
