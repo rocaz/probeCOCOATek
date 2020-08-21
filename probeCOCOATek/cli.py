@@ -10,7 +10,7 @@ from probeCOCOATek import __version__
 from probeCOCOATek.probeCOCOATek import probeCOCOATek, AugumentError, ParamError
 
 
-def main(params:list) -> int:
+def main() -> int:
     parser = argparse.ArgumentParser(prog='probeCOCOATek', description='Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".', prefix_chars='-')
     parser.add_argument("command", nargs=1, default="list", metavar="COMMAND{list,zip,dl}", help="Command. 'list': Getting ZIP and TEK list with TEK distribution list. 'zip': Taking the ZIP's TEK details. 'dl': Downloading all TEK ZIP and list JSON from TEK distribution list to the specified directory.")
     parser.add_argument("param", nargs="?", default=None, metavar="COMMAND_PARAM", help="Parameter per Command. With 'list', It means aggregate unit, Either the date('date') or the date and key('key'). With 'zip', specified ZIP url. With 'dl', Specified directory for downloading.")
@@ -18,7 +18,7 @@ def main(params:list) -> int:
     parser.add_argument("-nc", "--no-cache", action='store_true', dest="no_cache", help="** Not work yet ** Do not use cache.")
     parser.add_argument("-f", "--format", choices=("text","json"), default="text", dest="format_type", help="Output format type, default is 'text'. ")
     parser.add_argument("-v", "--version", action="version", version=__version__)
-    args = parser.parse_args(params)
+    args = parser.parse_args(sys.argv[1:])
 
     pCT = probeCOCOATek()
 
@@ -83,4 +83,4 @@ def main(params:list) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())
