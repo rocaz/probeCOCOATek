@@ -7,77 +7,80 @@ import argparse
 from urllib.parse import urlparse
 
 from probeCOCOATek import __version__
-from probeCOCOATek.probeCOCOATek import probeCOCOATek
+from probeCOCOATek.probeCOCOATek import probeCOCOATek, AugumentError, ParamError
 
-_tek_distribution_url = "https://covid19radar-jpn-prod.azureedge.net/c19r/440/list.json"
 
-def _isURL(url:str) -> bool:
-    try:
-        u = urlparse(url)
-    except:
-        return False
-    return True
-
-def main() -> int:
-    pCT = probeCOCOATek(_tek_distribution_url)
-
-    parser = argparse.ArgumentParser(description='Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".', prefix_chars='-')
-    parser.add_argument("-z", "--zip-url", default=None, dest="zip_url", help="print TEK ZIP Detail. If not set, print TEK distribution list")
-    parser.add_argument("-ekc", "--each-keys-count", action='store_true', dest="ekc", help="Print keys count each ZIP with TEK distribution list. Only available when printing TEK distribution list.")
-    parser.add_argument("-akl", "--all-keys-list", action='store_true', dest="akl", help="Print a list of all keys for each ZIP. Other options are ignored.")
-    parser.add_argument("-dl", "--dl-zip", default=None, dest="dl_dir", help="Specified directory for downloading all TEK ZIP and list JSON from TEK distribution list. Other options are ignored.")
+def main(params:list) -> int:
+    parser = argparse.ArgumentParser(prog='probeCOCOATek', description='Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".', prefix_chars='-')
+    parser.add_argument("command", nargs=1, default="list", metavar="COMMAND{list,zip,dl}", help="Command. 'list': Getting ZIP and TEK list with TEK distribution list. 'zip': Taking the ZIP's TEK details. 'dl': Downloading all TEK ZIP and list JSON from TEK distribution list to the specified directory.")
+    parser.add_argument("param", nargs="?", default=None, metavar="COMMAND_PARAM", help="Parameter per Command. With 'list', It means aggregate unit, Either the date('date') or the date and key('key'). With 'zip', specified ZIP url. With 'dl', Specified directory for downloading.")
+    parser.add_argument("-nk", "--no-keys", action='store_true', dest="no_keys", help="Without key information when printing ZIP and TEK list with TEK distribution list. Available with 'list' command.")
+    parser.add_argument("-nc", "--no-cache", action='store_true', dest="no_cache", help="** Not work yet ** Do not use cache.")
+    parser.add_argument("-f", "--format", choices=("text","json"), default="text", dest="format_type", help="Output format type, default is 'text'. ")
     parser.add_argument("-v", "--version", action="version", version=__version__)
-    args = parser.parse_args(sys.argv[1:])
+    args = parser.parse_args(params)
 
-    if args.dl_dir is not None:
-        try:
-            pCT.download_zips(_tek_distribution_url, args.dl_dir)
-            print("Download done.")
-        except Exception as e:
-            print("Error happens, when downloading TEK ZIP and distribution list.")
-            tb = sys.exc_info()[2]
-            print(e.with_traceback(tb))
-            return 1
-    elif args.akl:
-        try:
-            df = pCT.normalize_dataframe(json.loads(pCT.get_url_content(_tek_distribution_url).decode('utf-8')))
-            tek_zip_list = df.to_dict(orient="records")
-            text_lines = pCT.print_tek_keys_list(tek_zip_list)
-            print(os.linesep.join(text_lines))
-        except Exception as e:
-            print("Error happens, when getting all keys of ZIP.")
-            tb = sys.exc_info()[2]
-            print(e.with_traceback(tb))
-            return 1
-    elif args.zip_url is None:
-        try:
-            df = pCT.normalize_dataframe(json.loads(pCT.get_url_content(_tek_distribution_url).decode('utf-8')))
-            tek_zip_list = df.to_dict(orient="records")
-            text_lines = pCT.print_tek_zip_list(tek_zip_list, args.ekc)
-            print(os.linesep.join(text_lines))
-        except Exception as e:
-            print("Error happens, when getting TEK distribution list.")
-            tb = sys.exc_info()[2]
-            print(e.with_traceback(tb))
-            return 1
-    elif _isURL(args.zip_url):
-        try:
-            zip_content = pCT.get_url_content(args.zip_url)
-            key_bin, _ = pCT.extract_key_zip(zip_content)
-            tek_bin = pCT.parse_export_bin(key_bin)
-            text_lines = pCT.print_tek_bin_detail(tek_bin)
-            print(os.linesep.join(text_lines))
-        except Exception as e:
-            print("Error happens, when getting TEK ZIP detail.")
-            tb = sys.exc_info()[2]
-            print(e.with_traceback(tb))
+    pCT = probeCOCOATek()
+
+    if args.command is None or args.command == "":
+        command = "list"
+    else:
+        command = args.command[0]
+    if args.param is None or args.param == "":
+        if command == "list":
+            command_param = 'date'
+        else:
+            print("Error happens, command-param is invalid.")
             return 1
     else:
-        print("Argument other error happens.")
+        command_param = str(args.param)
+    
+    try:
+        if command == "list":
+            try:
+                tek_zip_list = pCT.get_zip_list()
+                if args.format_type == "text":
+                    text_lines = pCT.zip_list_toText(args.no_keys)
+                    print(os.linesep.join(text_lines))
+                elif args.format_type == "json":
+                    print(pCT.zip_list_toJson(args.no_keys))
+                else:
+                    print("Format type error.")
+                    return 1
+            except Exception as e:
+                print("Error happens, when getting TEK distribution list.")
+                raise e
+        elif command == "zip":
+            try:
+                tek_bin = pCT.get_tek_content(command_param)
+                if args.format_type == "text":
+                    text_lines = pCT.tek_toText(tek_bin)
+                    print(os.linesep.join(text_lines))
+                elif args.format_type == "json":
+                    print(pCT.tek_toJson(tek_bin))
+                else:
+                    print("Format type error.")
+                    return 1
+            except Exception as e:
+                print("Error happens, when getting TEK ZIP detail.")
+                raise e
+        elif command == "dl":
+            try:
+                pCT.download_zips(command_param)
+                print("Download done.")
+            except Exception as e:
+                print("Error happens, when downloading TEK ZIP and distribution list.")
+                raise e
+        else:
+            print("Argument other error happens.")
+            return 1
+    except Exception as e:
+        tb = sys.exc_info()[2]
+        print(e.with_traceback(tb))
         return 1
 
     return 0
 
 
-    if __name__ == "__main__":
-        sys.exit(main())
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
