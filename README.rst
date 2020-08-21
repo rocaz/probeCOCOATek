@@ -30,6 +30,7 @@ Install
 
 ::
 
+   pip install pandas
    pip install probeCOCOATek
 
 Usage
