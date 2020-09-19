@@ -15,7 +15,8 @@ Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan 
 
 ## Requirement
 
-- Python 3.7+
+- Python 3.6+
+- pandas 1.1.0+
 
 ## Install
 
@@ -136,7 +137,7 @@ Keys:  (Count: [17])
 
 4. Download all TEK ZIP
 
-```$ probeCOCOATek -dl tek_dir```
+```$ probeCOCOATek dl tek_dir```
 
 ```
 Download done.
