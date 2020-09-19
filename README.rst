@@ -4,7 +4,7 @@ probeCOCOATek
 Probe TemporaryExposureKeys and Files of Exposure Notifications System
 in Japan a.k.a. “COCOA”.
 
-|Python: 3.7+| |PyPI|
+|Python: 3.6+| |PyPI|
 
 |License: MIT|
 
@@ -23,7 +23,8 @@ Prefectural Police, Therefore, some options are very slow.**
 Requirement
 -----------
 
--  Python 3.7+
+-  Python 3.6+
+-  pandas 1.1.0+
 
 Install
 -------
@@ -153,7 +154,7 @@ or
 
 4. Download all TEK ZIP
 
-``$ probeCOCOATek -dl tek_dir``
+``$ probeCOCOATek dl tek_dir``
 
 ::
 
@@ -173,7 +174,7 @@ https://developers.google.com/android/exposure-notifications/exposure-notificati
 
 https://developer.apple.com/documentation/exposurenotification
 
-.. |Python: 3.7+| image:: https://img.shields.io/badge/Python-3.7+-4584b6.svg?style=popout&logo=python
+.. |Python: 3.6+| image:: https://img.shields.io/badge/Python-3.6+-4584b6.svg?style=popout&logo=python
    :target: https://www.python.org/
 .. |PyPI| image:: https://img.shields.io/pypi/v/probeCOCOATek
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
