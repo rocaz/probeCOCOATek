@@ -1,7 +1,7 @@
 # probeCOCOATek
 Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan a.k.a. "COCOA".
 
-[![Python: 3.7+](https://img.shields.io/badge/Python-3.7+-4584b6.svg?style=popout&logo=python)](https://www.python.org/) ![PyPI](https://img.shields.io/pypi/v/probeCOCOATek)
+[![Python: 3.6+](https://img.shields.io/badge/Python-3.6+-4584b6.svg?style=popout&logo=python)](https://www.python.org/) ![PyPI](https://img.shields.io/pypi/v/probeCOCOATek)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -15,7 +15,8 @@ Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan 
 
 ## Requirement
 
-- Python 3.7+
+- Python 3.6+
+- pandas 1.1.0+
 
 ## Install
 
@@ -136,7 +137,7 @@ Keys:  (Count: [17])
 
 4. Download all TEK ZIP
 
-```$ probeCOCOATek -dl tek_dir```
+```$ probeCOCOATek dl tek_dir```
 
 ```
 Download done.
