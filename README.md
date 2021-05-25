@@ -11,7 +11,7 @@ Probe TemporaryExposureKeys and Files of Exposure Notifications System in Japan 
 
 **In Japan, the interval to access the server MUST BE AT LEAST 1 SEC to avoid being arrested by the Okazaki Police Department or the Kanagawa Prefectural Police, Therefore, some options are very slow.**
 
-[Librahack Incident (Japanese)](https://ja.wikipedia.org/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6, "Librahack Incident (Japanese)")
+[Librahack Incident (Japanese)](https://ja.wikipedia.org/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6 "Librahack Incident (Japanese)")
 
 ## Requirement
 
