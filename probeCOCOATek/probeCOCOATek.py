@@ -207,6 +207,8 @@ class probeCOCOATek():
             text_lines.append("       [{:30}]:[{:}]".format("transmission_risk_level", str(k.transmission_risk_level)))
             text_lines.append("       [{:30}]:[{:}]".format("rolling_start_interval_number", str(k.rolling_start_interval_number)))
             text_lines.append("       [{:30}]:[{:}]".format("rolling_period", str(k.rolling_period)))
+            text_lines.append("       [{:30}]:[{:}]".format("report_type", str(k.report_type)))
+            text_lines.append("       [{:30}]:[{:}]".format("days_since_onset_of_symptoms", str(k.days_since_onset_of_symptoms)))
         return text_lines
 
 
@@ -230,6 +232,8 @@ class probeCOCOATek():
             kd["transmission_risk_level"] = k.transmission_risk_level
             kd["rolling_start_interval_number"] = k.rolling_start_interval_number
             kd["rolling_period"] = k.rolling_period
+            kd["report_type"] = k.report_type
+            kd["days_since_onset_of_symptoms"] = k.days_since_onset_of_symptoms
             jd["keys"].append(kd)
         return json.dumps(jd)
 
