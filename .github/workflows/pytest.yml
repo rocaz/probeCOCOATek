@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
@@ -34,9 +34,9 @@ jobs:
         pytest --cov=. -v -s --cov-report=xml
       env:
         GITHUBTOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
-        env_vars: OS,PYTHON
+    #- name: Upload coverage to Codecov
+    #  uses: codecov/codecov-action@v1
+    #  with:
+    #    token: ${{ secrets.CODECOV_TOKEN }}
+    #    file: ./coverage.xml
+    #    env_vars: OS,PYTHON
