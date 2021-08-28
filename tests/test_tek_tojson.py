@@ -45,6 +45,8 @@ class TestTEKToJSON(object):
                     assert k["transmission_risk_level"] in [tk.transmission_risk_level for tk in tek_bin.keys if k["key_data"] == tk.key_data.hex()]
                     assert k["rolling_start_interval_number"] in [tk.rolling_start_interval_number for tk in tek_bin.keys if k["key_data"] == tk.key_data.hex()]
                     assert k["rolling_period"] in [tk.rolling_period for tk in tek_bin.keys if k["key_data"] == tk.key_data.hex()]
+                    assert k["report_type"] in [tk.report_type for tk in tek_bin.keys if k["key_data"] == tk.key_data.hex()]
+                    assert k["days_since_onset_of_symptoms"] in [tk.days_since_onset_of_symptoms for tk in tek_bin.keys if k["key_data"] == tk.key_data.hex()]
 
 
     @pytest.mark.parametrize("nocache", [True, False])

@@ -39,6 +39,8 @@ class TestGetTEKContent(object):
                 assert set([k.transmission_risk_level for k in tek_bin.keys]) == set([z["transmission_risk_level"] for z in zip_data[url]["keys"]])
                 assert set([k.rolling_start_interval_number for k in tek_bin.keys]) == set([z["rolling_start_interval_number"] for z in zip_data[url]["keys"]])
                 assert set([k.rolling_period for k in tek_bin.keys]) == set([z["rolling_period"] for z in zip_data[url]["keys"]])
+                assert set([k.report_type for k in tek_bin.keys]) == set([z["report_type"] for z in zip_data[url]["keys"]])
+                assert set([k.days_since_onset_of_symptoms for k in tek_bin.keys]) == set([z["days_since_onset_of_symptoms"] for z in zip_data[url]["keys"]])
     
     def test_zip_by_absfile_normal(self, normal_distribution_url, zip_data, tmpdir):
         for k,v in zip_data.items():
@@ -59,6 +61,8 @@ class TestGetTEKContent(object):
             assert set([k.transmission_risk_level for k in tek_bin.keys]) == set([z["transmission_risk_level"] for z in v1["keys"]])
             assert set([k.rolling_start_interval_number for k in tek_bin.keys]) == set([z["rolling_start_interval_number"] for z in v1["keys"]])
             assert set([k.rolling_period for k in tek_bin.keys]) == set([z["rolling_period"] for z in v1["keys"]])
+            assert set([k.report_type for k in tek_bin.keys]) == set([z["report_type"] for z in v1["keys"]])
+            assert set([k.days_since_onset_of_symptoms for k in tek_bin.keys]) == set([z["days_since_onset_of_symptoms"] for z in v1["keys"]])
 
     def test_zip_by_relfile_withcache_normal(self, normal_distribution_url, zip_data):
         pCT = probeCOCOATek(normal_distribution_url)
@@ -79,6 +83,8 @@ class TestGetTEKContent(object):
             assert set([k.transmission_risk_level for k in tek_bin.keys]) == set([z["transmission_risk_level"] for z in v1["keys"]])
             assert set([k.rolling_start_interval_number for k in tek_bin.keys]) == set([z["rolling_start_interval_number"] for z in v1["keys"]])
             assert set([k.rolling_period for k in tek_bin.keys]) == set([z["rolling_period"] for z in v1["keys"]])
+            assert set([k.report_type for k in tek_bin.keys]) == set([z["report_type"] for z in v1["keys"]])
+            assert set([k.days_since_onset_of_symptoms for k in tek_bin.keys]) == set([z["days_since_onset_of_symptoms"] for z in v1["keys"]])
 
     def test_zip_not_found_error(self, normal_distribution_url, zip_data):
         pCT = probeCOCOATek(normal_distribution_url)
