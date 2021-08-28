@@ -44,6 +44,8 @@ class TestTEKToText(object):
                     assert True in [("transmission_risk_level" in l) and ("[{:}]".format(k.transmission_risk_level) in l) for l in text_lines]
                     assert True in [("rolling_start_interval_number" in l) and ("[{:}]".format(k.rolling_start_interval_number) in l) for l in text_lines]
                     assert True in [("rolling_period" in l) and ("[{:}]".format(k.rolling_period) in l) for l in text_lines]
+                    assert True in [("report_type" in l) and ("[{:}]".format(k.report_type) in l) for l in text_lines]
+                    assert True in [("days_since_onset_of_symptoms" in l) and ("[{:}]".format(k.days_since_onset_of_symptoms) in l) for l in text_lines]
 
     @pytest.mark.parametrize("nocache", [True, False])
     def test_tektext_invalid_data_error(self, nocache, normal_distribution_url, normal_distribution_json, zip_data, invalid_zip_data):
