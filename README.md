@@ -128,10 +128,14 @@ Keys:  (Count: [17])
        [transmission_risk_level       ]:[0]
        [rolling_start_interval_number ]:[2659680]
        [rolling_period                ]:[144]
+       [report_type                   ]:[0]
+       [days_since_onset_of_symptoms  ]:[0]
     [002]:[8a0fe13019472a31f3426a1c94c3eb1b]
        [transmission_risk_level       ]:[0]
        [rolling_start_interval_number ]:[2659680]
        [rolling_period                ]:[144]
+       [report_type                   ]:[0]
+       [days_since_onset_of_symptoms  ]:[0]
     :
 ```
 
