@@ -3,4 +3,4 @@ import os
 
 from probeCOCOATek import TemporaryExposureKey
 
-__version__ = '8.20210828'
+__version__ = '9.20210911'
