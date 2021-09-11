@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from __future__ import annotations
 import sys
 import os
 import io
@@ -10,6 +11,7 @@ import json
 import requests
 import zipfile
 import pandas as pd
+import google.protobuf.message as pbm
 
 from probeCOCOATek import __version__
 from probeCOCOATek.TemporaryExposureKey.TemporaryExposureKey_pb2 import TemporaryExposureKeyExport
@@ -99,7 +101,7 @@ class probeCOCOATek():
         return zip_content
 
 
-    def _extract_key_zip(self, zip_content:bytes) -> (bytes, bytes):
+    def _extract_key_zip(self, zip_content:bytes) -> tuple(bytes, bytes):
         try:
             z = zipfile.ZipFile(io.BytesIO(zip_content))
         except zipfile.BadZipFile as e:
@@ -109,7 +111,13 @@ class probeCOCOATek():
 
     def _parse_export_key(self, pb_bin:bytes) -> TemporaryExposureKeyExport:
         tek_bin = TemporaryExposureKeyExport()
-        tek_bin.ParseFromString(pb_bin)
+        try:
+            tek_bin.ParseFromString(pb_bin)
+        except pbm.DecodeError as e:
+            #print('DecodeError: {}'.format(e))
+            None
+        except Exception as e:
+            print('Error: {}'.format(e))
         return tek_bin
 
 
