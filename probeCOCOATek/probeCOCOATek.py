@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import annotations
+if sys.version_info.major == 3 and sys.version_info.minor >= 7:
+    from __future__ import annotations
 import sys
 import os
 import io
