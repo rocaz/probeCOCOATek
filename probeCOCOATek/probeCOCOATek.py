@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-if sys.version_info.major == 3 and sys.version_info.minor >= 7:
-    from __future__ import annotations
 import sys
 import os
 import io
@@ -16,7 +14,6 @@ import google.protobuf.message as pbm
 
 from probeCOCOATek import __version__
 from probeCOCOATek.TemporaryExposureKey.TemporaryExposureKey_pb2 import TemporaryExposureKeyExport
-
 
 class Error(Exception):
   pass
@@ -102,7 +99,7 @@ class probeCOCOATek():
         return zip_content
 
 
-    def _extract_key_zip(self, zip_content:bytes) -> tuple(bytes, bytes):
+    def _extract_key_zip(self, zip_content:bytes) -> (bytes, bytes):
         try:
             z = zipfile.ZipFile(io.BytesIO(zip_content))
         except zipfile.BadZipFile as e:
@@ -116,7 +113,7 @@ class probeCOCOATek():
             tek_bin.ParseFromString(pb_bin)
         except pbm.DecodeError as e:
             #print('DecodeError: {}'.format(e))
-            None
+            pass
         except Exception as e:
             print('Error: {}'.format(e))
         return tek_bin
