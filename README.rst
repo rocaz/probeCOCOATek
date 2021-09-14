@@ -18,7 +18,7 @@ avoid being arrested by the Okazaki Police Department or the Kanagawa
 Prefectural Police, Therefore, some options are very slow.**
 
 `Librahack Incident
-(Japanese) <https://ja.wikipedia.org/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6,>`__
+(Japanese) <https://ja.wikipedia.org/wiki/%E5%B2%A1%E5%B4%8E%E5%B8%82%E7%AB%8B%E4%B8%AD%E5%A4%AE%E5%9B%B3%E6%9B%B8%E9%A4%A8%E4%BA%8B%E4%BB%B6>`__
 
 Requirement
 -----------
@@ -146,10 +146,14 @@ or
           [transmission_risk_level       ]:[0]
           [rolling_start_interval_number ]:[2659680]
           [rolling_period                ]:[144]
+          [report_type                   ]:[0]
+          [days_since_onset_of_symptoms  ]:[0]
        [002]:[8a0fe13019472a31f3426a1c94c3eb1b]
           [transmission_risk_level       ]:[0]
           [rolling_start_interval_number ]:[2659680]
           [rolling_period                ]:[144]
+          [report_type                   ]:[0]
+          [days_since_onset_of_symptoms  ]:[0]
        :
 
 4. Download all TEK ZIP
@@ -177,6 +181,7 @@ https://developer.apple.com/documentation/exposurenotification
 .. |Python: 3.6+| image:: https://img.shields.io/badge/Python-3.6+-4584b6.svg?style=popout&logo=python
    :target: https://www.python.org/
 .. |PyPI| image:: https://img.shields.io/pypi/v/probeCOCOATek
+   :target: https://pypi.org/project/probeCOCOATek/
 .. |License: MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
    :target: https://opensource.org/licenses/MIT
 .. |GitHub Actions| image:: https://github.com/rocaz/probeCOCOATek/workflows/GitHub%20Actions/badge.svg
